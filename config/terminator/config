@@ -1,0 +1,99 @@
+[global_config]
+  always_split_with_profile = True
+  borderless = True
+  enabled_plugins = InactivityWatch, TestPlugin, TerminatorThemes, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, Logger, LaunchpadBugURLHandler
+  focus = mouse
+  inactive_color_offset = 0.705128205128
+  title_font = Operator Mono Lig Semi-Light 7
+  title_hide_sizetext = True
+  title_transmit_bg_color = "#157eb0"
+  title_use_system_font = False
+  window_state = fullscreen
+[keybindings]
+  split_horiz = <Primary><Shift>Up
+  split_vert = <Primary><Shift>Right
+[layouts]
+  [[default]]
+    [[[child0]]]
+      fullscreen = False
+      last_active_term = 884f29cc-2a8c-4348-9028-b761f8e56c17
+      last_active_window = True
+      maximised = True
+      order = 0
+      parent = ""
+      position = 1920:0
+      size = 1080, 1891
+      title = dai@dai: ~
+      type = Window
+    [[[terminal1]]]
+      order = 0
+      parent = child0
+      profile = default
+      type = Terminal
+      uuid = 884f29cc-2a8c-4348-9028-b761f8e56c17
+[plugins]
+[profiles]
+  [[default]]
+    background_color = "#121212"
+    cursor_color = "#f9dc5c"
+    cursor_shape = underline
+    font = Fira Code Medium 8
+    palette = "#2e3436:#ff512f:#b2ffa9:#fffd82:#3185fc:#dd2476:#66d7d1:#f2efea:#555753:#ff512f:#b2ffa9:#fffd82:#3185fc:#dd2476:#66d7d1:#f2efea"
+    scroll_on_output = True
+    scrollback_infinite = True
+    scrollback_lines = 20000
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_system_font = False
+  [[3024 Night]]
+    cursor_color = "#aaaaaa"
+  [[Aco]]
+    background_color = "#090300"
+    cursor_color = "#a5a2a2"
+    foreground_color = "#a5a2a2"
+    palette = "#090300:#db2d20:#01a252:#fded02:#01a0e4:#a16a94:#b5e4f4:#a5a2a2:#5c5855:#e8bbd0:#3a3432:#4a4543:#807d7c:#d6d5d4:#cdab53:#f7f7f7"
+    scrollback_infinite = True
+    scrollback_lines = 2000
+  [[AdventureTime]]
+    background_color = "#1f1d45"
+    cursor_color = "#efbf38"
+    foreground_color = "#f8dcc0"
+    palette = "#050404:#bd0013:#4ab118:#e7741e:#0f4ac6:#665993:#70a598:#f8dcc0:#4e7cbf:#fc5f5a:#9eff6e:#efc11a:#1997c6:#9b5953:#c8faf4:#f6f5fb"
+  [[Afterglow]]
+    background_color = "#222324"
+    cursor_color = "#bbbbbb"
+    foreground_color = "#bababa"
+    palette = "#000000:#e8341c:#68c256:#f2d42c:#1c98e8:#8e69c9:#1c98e8:#bababa:#000000:#e05a4f:#77b869:#efd64b:#387cd3:#957bbe:#3d97e2:#bababa"
+  [[Argonaut]]
+    background_color = "#0e1019"
+    cursor_color = "#ff0018"
+    foreground_color = "#fffaf4"
+    palette = "#232323:#ff000f:#8ce10b:#ffb900:#008df8:#6d43a6:#00d8eb:#ffffff:#444444:#ff2740:#abe15b:#ffd242:#0092ff:#9a5feb:#67fff0:#ffffff"
+  [[Atom]]
+    background_color = "#161719"
+    cursor_color = "#d0d0d0"
+    font = Fira Code Light 10
+    foreground_color = "#c5c8c6"
+    palette = "#000000:#fd5ff1:#87c38a:#ffd7b1:#85befd:#b9b6fc:#85befd:#e0e0e0:#000000:#fd5ff1:#94fa36:#f5ffa8:#96cbfe:#b9b6fc:#85befd:#e0e0e0"
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_system_font = False
+  [[Bloody]]
+    cursor_color = "#aaaaaa"
+  [[Fira]]
+    background_color = "#eaeaea"
+    cursor_color = "#16afca"
+    foreground_color = "#232322"
+    palette = "#212121:#b7141f:#457b24:#f6981e:#134eb2:#560088:#0e717c:#efefef:#424242:#e83b3f:#7aba3a:#ffea2e:#54a4f3:#aa4dbc:#26bbd1:#d9d9d9"
+  [[Material]]
+    cursor_color = "#aaaaaa"
+  [[MaterialDark]]
+    background_color = "#232322"
+    cursor_color = "#16afca"
+    foreground_color = "#e5e5e5"
+    palette = "#212121:#b7141f:#457b24:#f6981e:#134eb2:#560088:#0e717c:#efefef:#424242:#e83b3f:#7aba3a:#ffea2e:#54a4f3:#aa4dbc:#26bbd1:#d9d9d9"
+  [[idleToes]]
+    background_color = "#323232"
+    cursor_color = "#d6d6d6"
+    foreground_color = "#ffffff"
+    palette = "#323232:#d25252:#7fe173:#ffc66d:#4099ff:#f680ff:#bed6ff:#eeeeec:#535353:#f07070:#9dff91:#ffe48b:#5eb7f7:#ff9dff:#dcf4ff:#ffffff"

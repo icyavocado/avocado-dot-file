@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
+xrandr --display :0.0 -o normal
 
-xrandr -d :0.0 -o normal
-xrandr -d :0 --output DP-1-1 --auto
-xrandr --output DP-1-8 --left-of DP-1-1
+for display in `xrandr --display :0.0 --query | grep ' connected' | cut -d " " -f 1`; do
+  echo "Working on $display";
+  xrandr --display :0.0 --output $display -o normal; echo "Orientation -- Normal";
+  xrandr --display :0.0 --output $display --mode 1920x1200; echo "Display -- 1920x1200";
+done
+
+xrandr --output DP-1-1 --right-of DP-1-8
