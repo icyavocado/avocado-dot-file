@@ -37,7 +37,7 @@
     background_color = "#121212"
     cursor_color = "#f9dc5c"
     cursor_shape = underline
-    font = Fira Code Medium 8
+    font = FuraCode Nerd Font Mono weight=450 8
     palette = "#2e3436:#ff512f:#b2ffa9:#fffd82:#3185fc:#dd2476:#66d7d1:#f2efea:#555753:#ff512f:#b2ffa9:#fffd82:#3185fc:#dd2476:#66d7d1:#f2efea"
     scroll_on_output = True
     scrollback_infinite = True
