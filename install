@@ -35,11 +35,6 @@ ln -s $(pwd)/wallpaper $HOME/.config/i3-dotfile/
 ln -s $(pwd)/scripts $HOME/.config/i3-dotfile/
 feh --bg-scale $HOME/.config/i3-dotfile/wallpaper/one.png
 
-# Symlink i3 config
-rm -r ~/.config/i3
-ln -s $(pwd)/config/i3 ~/.config/i3
-i3-msg restart
-
 # Symlink vim
 ln -s $(pwd)/config/vim/vimrc $HOME/.vimrc
 
@@ -49,6 +44,15 @@ xbindkeys --poll-rc
 
 # Symlink Code Preference
 ln -s $(pwd)/config/Code/Preference $HOME/.config/Code/
+
+# Symlink polybar
+ln -s $(pwd)/config/polybar/ $HOME/.config/
+
+# Symlink i3 config
+rm -r ~/.config/i3
+ln -s $(pwd)/config/i3 ~/.config/i3
+i3-msg restart
+
 # CONFIG
 ## Screen rotation
 # cvt 1920 1080 60
