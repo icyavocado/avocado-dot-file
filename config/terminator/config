@@ -4,7 +4,7 @@
   enabled_plugins = InactivityWatch, TestPlugin, TerminatorThemes, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, Logger, LaunchpadBugURLHandler
   focus = mouse
   inactive_color_offset = 0.705128205128
-  title_font = Operator Mono Lig Semi-Light 7
+  title_font = Consolas 10
   title_hide_sizetext = True
   title_transmit_bg_color = "#157eb0"
   title_use_system_font = False
@@ -23,7 +23,7 @@
       parent = ""
       position = 1920:0
       size = 1080, 1891
-      title = dai@dai: ~
+      title = Terminator
       type = Window
     [[[terminal1]]]
       order = 0
@@ -37,7 +37,7 @@
     background_color = "#121212"
     cursor_color = "#f9dc5c"
     cursor_shape = underline
-    font = FuraCode Nerd Font Mono weight=450 8
+    font = Consolas 10
     palette = "#2e3436:#ff512f:#b2ffa9:#fffd82:#3185fc:#dd2476:#66d7d1:#f2efea:#555753:#ff512f:#b2ffa9:#fffd82:#3185fc:#dd2476:#66d7d1:#f2efea"
     scroll_on_output = True
     scrollback_infinite = True
