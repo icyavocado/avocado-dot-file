@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-xautolock -detectsleep -time 1 -locker "~/avocado-repo/scripts/lock" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
+xautolock -detectsleep -time 1 -locker "$HOME/.config/i3-dotfile/scripts/lock" -notify 30:w -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
