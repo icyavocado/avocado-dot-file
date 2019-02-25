@@ -1,5 +1,0 @@
-alias dbtun='ssh -L 5432:localhost:5432 vagrant'
-alias dai='ssh dai'
-alias vag='ssh vagrant'
-alias kepler="ssh dai -t 'sudo su - kepler'"
-alias tmux="TERM=screen-256color-bce tmux"
