@@ -1,68 +1,95 @@
 #!/usr/bin/env bash
 
+# ----------------------------------------------- PREPARE
 sudo apt update
-sudo apt install -y i3 i3lock snapd xautolock xinit zip gzip tar git feh blueman ubuntu-keyring firefox chromium-browser software-properties-common apt-transport-https wget terminator dbus-x11 openssh-server vim rofi python-pip xbindkeys xbindkeys-config curl build-essential cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev xcb libxcb-ewmh2cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev xcb libxcb-ewmh2
-
+sudo apt install -y zip gzip tar feh blueman ubuntu-keyring software-properties-common apt-transport-https wget openssh-server python-pip curl build-essential
 pip install requests
 
-# Install MailSpring
+# ----------------------------------------------- CREATE
+
+# INSTALL git [*]
+sudo apt install -y git vim
+
+# INSTALL i3wm, i3lock, xautolock, xinit
+sudo apt install -y i3 i3lock xautolock xinit
+
+# INSTALL xbindkeys
+sudo apt install -y xbindkeys xbindkeys-config
+
+# INSTALL rofi
+sudo apt install -y rofi
+
+# INSTALL terminator
+sudo apt install -y terminator dbus-x11
+
+# INSTALL chromium and firefox
+sudo apt install -y firefox chromium-browser 
+
+# INSTALL vagrant and virtualbox
+sudo apt install -y virtualbox vagrant
+
+# INSTALL nvm
+wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+export NVM_DIR="${XDG_CONFIG_HOME/:-$HOME/.}nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+# INSTALL mailspring
+sudo apt install -y snapd
 sudo snap install mailspring
 
-## Install Polybar
+# INSTALL polybar
+sudo apt install -y cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev xcb libxcb-ewmh2cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev xcb libxcb-ewmh2
 git clone https://github.com/jaagr/polybar.git
 cd polybar && ./build.sh
 
-## Install Vscode
+# INSTALL vscode
 wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
 sudo apt install code
 
-## Install DBeaver
+# INSTALL dbeaver
 mkdir -p $HOME/Downloads
 wget -q https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb -O $HOME/Downloads/dbeaver.deb
 sudo apt install -y $HOME/Downloads/dbeaver.deb
-rm -r $HOME/Downloads
 
-## Install font
+# ----------------------------------------------- Symlinks
+
+# ADD .fonts to $HOME
 rm -r $HOME/.fonts
 ln -s $(pwd)/fonts $HOME/.fonts
-fc-cache -f -v
 
-## Install terminator config
+# ADD bashrc / bash prompt
+ln -s $(pwd)/config/bashrc $HOME/.bashrc
+ln -s $(pwd)/scripts/git_prompt.sh $HOME/.git_prompt.sh
+
+# Install terminator config
 rm -r $HOME/.config/terminator
 ln -s $(pwd)/config/terminator $HOME/.config/terminator
 wget -q https://git.io/v5Zww -O $HOME"/.config/terminator/plugins/terminator-themes.py"
 
-## Install bashrc bash prompt
-ln -s $(pwd)/config/bashrc $HOME/.bashrc
-ln -s $(pwd)/scripts/git_prompt.sh $HOME/.git_prompt.sh
-
-# Putting wallpaper and scripts into .config
+# Symlink wallpapers and scripts to .config folder
 mkdir -p $HOME/.config/i3-dotfile
 ln -s $(pwd)/wallpaper $HOME/.config/i3-dotfile/
 ln -s $(pwd)/scripts $HOME/.config/i3-dotfile/
 
-# Symlink vim
+# Symlink vimrc
 ln -s $(pwd)/config/vim/vimrc $HOME/.vimrc
 
 # Symlink xbindkeys
 ln -s $(pwd)/config/xbindkeys/xbindkeysrc $HOME/.xbindkeysrc
 xbindkeys --poll-rc
 
-# Symlink polybar
+# Symlink polybar config
 ln -s $(pwd)/config/polybar/ $HOME/.config/
 
 # Symlink i3 config
 rm -r $HOME/.config/i3
 ln -s $(pwd)/config/i3 $HOME/.config/i3
-rm $HOME/.git_prompt.sh
-i3-msg restart
 
-## Screen rotation
-# cvt 1920 1080 60
-# xrandr --newmodea
-# xrandr --addmode
-
-# Window Manager Up
+# Start up window manager / set background
 startx
 feh --bg-scale $HOME/.config/i3-dotfile/wallpaper/one.png
+
+# ----------------------------------------------- CLEAN UP
+rm -r $HOME/Downloads
+fc-cache -f -v
