@@ -13,6 +13,9 @@ sudo apt install -y git vim
 # INSTALL i3wm, i3lock, xautolock, xinit
 sudo apt install -y i3 i3lock xautolock xinit
 
+# INSTALL screenshot program
+sudo apt install -y xclip scrot
+
 # INSTALL xbindkeys
 sudo apt install -y xbindkeys xbindkeys-config
 
@@ -38,9 +41,10 @@ sudo apt install -y snapd
 sudo snap install mailspring
 
 # INSTALL polybar
-sudo apt install -y cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev xcb libxcb-ewmh2cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev xcb libxcb-ewmh2
+sudo apt install -y cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev xcb libxcb-ewmh2
 git clone https://github.com/jaagr/polybar.git
 cd polybar && ./build.sh
+cd ..
 
 # INSTALL vscode
 wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
@@ -59,6 +63,7 @@ rm -r $HOME/.fonts
 ln -s $(pwd)/fonts $HOME/.fonts
 
 # ADD bashrc / bash prompt
+rm $HOME/.bashrc
 ln -s $(pwd)/config/bashrc $HOME/.bashrc
 ln -s $(pwd)/scripts/git_prompt.sh $HOME/.git_prompt.sh
 
@@ -86,8 +91,12 @@ ln -s $(pwd)/config/polybar/ $HOME/.config/
 rm -r $HOME/.config/i3
 ln -s $(pwd)/config/i3 $HOME/.config/i3
 
+# Symlink rofi config
+rm -r $HOME/.config/rofi
+ln -s $(pwd)/config/rofi $HOME/.config/rofi
+
 # Start up window manager / set background
-startx
+# startx
 feh --bg-scale $HOME/.config/i3-dotfile/wallpaper/one.png
 
 # ----------------------------------------------- CLEAN UP
