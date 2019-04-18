@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-sudo /etc/init.d/bluetooth start
-
-sshfs lcars:/home/dai.nguyen/ ~/mnt

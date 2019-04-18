@@ -34,7 +34,7 @@
 # Uncomment the lines above if you want to pay attention to them.
 
 #keystate_numlock = enable
-#keystate_capslock = enable
+keystate_capslock = enable
 keystate_scrolllock= enable
 
 # Examples of commands:
@@ -47,6 +47,9 @@ keystate_scrolllock= enable
 
 "scrot -s ~/Mail/screenshot"
   Print
+
+"control+shift+U+I"
+  CapsLock
 
 # set directly keycode (here control + f with my keyboard)
 #"xterm"
