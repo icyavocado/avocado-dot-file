@@ -541,3 +541,4 @@ colorscheme vim-material
 let g:airline_theme='material'
 set encoding=UTF-8
 let g:airline_powerline_fonts = 1
+set mouse=a
