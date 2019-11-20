@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-xmodmap -e "keycode 66 = Pause"
-sshfs lcars:/home/dai.nguyen/ ~/mnt
-$HOME/.config/i3-dotfile/scripts/work-layout-screen.sh
-./.fehbg
-cd ~/Edge/goldenaxe && vagrant up &
-cd ~
-rocketchat-desktop &
