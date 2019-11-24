@@ -4,7 +4,7 @@
 sudo apt update
 sudo apt install -y zip gzip tar feh blueman ubuntu-keyring software-properties-common apt-transport-https wget openssh-server python-pip curl build-essential
 sudo apt install -y mpd
-sudo apt install -y jq variety
+sudo apt install -y jq variety arandr
 pip install requests
 
 # ----------------------------------------------- CREATE
