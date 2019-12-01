@@ -1,50 +1,30 @@
 [global_config]
-  always_split_with_profile = True
-  borderless = True
-  enabled_plugins = InactivityWatch, TestPlugin, TerminatorThemes, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, Logger, LaunchpadBugURLHandler
   focus = mouse
-  inactive_color_offset = 0.705128205128
-  title_font = Consolas 10
+  window_state = fullscreen
+  borderless = True
   title_hide_sizetext = True
   title_transmit_bg_color = "#157eb0"
+  inactive_color_offset = 0.705128205128
+  enabled_plugins = InactivityWatch, TestPlugin, TerminatorThemes, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, Logger, LaunchpadBugURLHandler
+  always_split_with_profile = True
   title_use_system_font = False
-  window_state = fullscreen
+  title_font = Consolas 10
 [keybindings]
   split_horiz = <Primary><Shift>Up
   split_vert = <Primary><Shift>Right
-[layouts]
-  [[default]]
-    [[[child0]]]
-      fullscreen = False
-      last_active_term = 884f29cc-2a8c-4348-9028-b761f8e56c17
-      last_active_window = True
-      maximised = True
-      order = 0
-      parent = ""
-      position = 1920:0
-      size = 1080, 1891
-      title = Terminator
-      type = Window
-    [[[terminal1]]]
-      order = 0
-      parent = child0
-      profile = default
-      type = Terminal
-      uuid = 884f29cc-2a8c-4348-9028-b761f8e56c17
-[plugins]
 [profiles]
   [[default]]
     background_color = "#121212"
+    cursor_shape = underline
     cursor_color = "#8ae234"
     cursor_color_fg = False
     cursor_shape = underline
     font = Operator Mono Lig Semi-Light 10
     palette = "#2e3436:#ff512f:#b2ffa9:#fffd82:#3185fc:#dd2476:#66d7d1:#f2efea:#555753:#ff512f:#b2ffa9:#fffd82:#3185fc:#dd2476:#66d7d1:#f2efea"
     scroll_on_output = True
-    scrollback_infinite = True
     scrollback_lines = 20000
-    scrollbar_position = hidden
-    show_titlebar = False
+    scrollback_infinite = True
+    palette = "#2e3436:#ff512f:#b2ffa9:#fffd82:#3185fc:#dd2476:#66d7d1:#f2efea:#555753:#ff512f:#b2ffa9:#fffd82:#3185fc:#dd2476:#66d7d1:#f2efea"
     use_system_font = False
   [[3024 Night]]
     cursor_color = "#aaaaaa"
@@ -52,9 +32,9 @@
     background_color = "#090300"
     cursor_color = "#a5a2a2"
     foreground_color = "#a5a2a2"
-    palette = "#090300:#db2d20:#01a252:#fded02:#01a0e4:#a16a94:#b5e4f4:#a5a2a2:#5c5855:#e8bbd0:#3a3432:#4a4543:#807d7c:#d6d5d4:#cdab53:#f7f7f7"
-    scrollback_infinite = True
     scrollback_lines = 2000
+    scrollback_infinite = True
+    palette = "#090300:#db2d20:#01a252:#fded02:#01a0e4:#a16a94:#b5e4f4:#a5a2a2:#5c5855:#e8bbd0:#3a3432:#4a4543:#807d7c:#d6d5d4:#cdab53:#f7f7f7"
   [[AdventureTime]]
     background_color = "#1f1d45"
     cursor_color = "#efbf38"
@@ -75,9 +55,9 @@
     cursor_color = "#d0d0d0"
     font = Fira Code Light 10
     foreground_color = "#c5c8c6"
-    palette = "#000000:#fd5ff1:#87c38a:#ffd7b1:#85befd:#b9b6fc:#85befd:#e0e0e0:#000000:#fd5ff1:#94fa36:#f5ffa8:#96cbfe:#b9b6fc:#85befd:#e0e0e0"
-    scrollbar_position = hidden
     show_titlebar = False
+    scrollbar_position = hidden
+    palette = "#000000:#fd5ff1:#87c38a:#ffd7b1:#85befd:#b9b6fc:#85befd:#e0e0e0:#000000:#fd5ff1:#94fa36:#f5ffa8:#96cbfe:#b9b6fc:#85befd:#e0e0e0"
     use_system_font = False
   [[Bloody]]
     cursor_color = "#aaaaaa"
@@ -98,3 +78,23 @@
     cursor_color = "#d6d6d6"
     foreground_color = "#ffffff"
     palette = "#323232:#d25252:#7fe173:#ffc66d:#4099ff:#f680ff:#bed6ff:#eeeeec:#535353:#f07070:#9dff91:#ffe48b:#5eb7f7:#ff9dff:#dcf4ff:#ffffff"
+[layouts]
+  [[default]]
+    [[[child0]]]
+      fullscreen = False
+      last_active_term = 884f29cc-2a8c-4348-9028-b761f8e56c17
+      last_active_window = True
+      maximised = True
+      order = 0
+      parent = ""
+      position = 1920:0
+      size = 1080, 1891
+      title = Terminator
+      type = Window
+    [[[terminal1]]]
+      order = 0
+      parent = child0
+      profile = default
+      type = Terminal
+      uuid = 884f29cc-2a8c-4348-9028-b761f8e56c17
+[plugins]

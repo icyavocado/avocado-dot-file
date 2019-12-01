@@ -170,6 +170,10 @@ elif type compctl &>/dev/null; then
   }
   compctl -K _pm2_completion + -f + pm2
 fi
+
 ###-end-pm2-completion-###
 
 source ~/perl5/perlbrew/etc/bashrc
+
+# ALIAS
+alias vsroot='sudo code --user-data-dir="~/.vscode-root"'
