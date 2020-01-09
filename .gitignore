@@ -1,3 +1,5 @@
 node_modules
 wallpaper/lock.png
 fonts/operator-mono-cufonfonts/.uuid
+config/terminator/plugins/terminator-themes.py
+config/terminator/plugins/terminator-themes.pyc
