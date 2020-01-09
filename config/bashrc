@@ -173,7 +173,7 @@ fi
 
 ###-end-pm2-completion-###
 
-source ~/perl5/perlbrew/etc/bashrc
-
 # ALIAS
-alias vsroot='sudo code --user-data-dir="~/.vscode-root"'
+alias vsroot="sudo code --user-data-dir /home/dai/.vscode-root"
+alias gnome-setting="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
+alias myipplease="ip address | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'"
