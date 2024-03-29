@@ -1,0 +1,98 @@
+/*******************************************************************************
+ * MACOS SPOTLIGHT LIKE DARK THEME FOR ROFI 
+ * User                 : LR-Tech               
+ * Theme Repo           : https://github.com/lr-tech/rofi-themes-collection
+ *******************************************************************************/
+
+* {
+    font:   "OperatorMono 12";
+
+    bg0:    #000000;
+    bg1:    #0a004780;
+    bg2:    #00468780;
+
+    fg0:    #b3f9f8;
+    fg1:    #cfc9c2;
+    fg2:    #41486840;
+    fg3:    #cfc9c240;
+
+    background-color:   transparent;
+    text-color:         @fg0;
+
+    margin:     0;
+    padding:    0;
+    spacing:    0;
+}
+
+window {
+    background-color:   @bg0;
+    location:       center;
+    width:          1000;
+    y-offset:       -200;
+    border-radius:  8px;
+}
+
+inputbar {
+    font:       "OperatorMono 14";
+    padding:    6px;
+    spacing:    8px;
+    children:   [ entry, search-icon ];
+}
+
+entry, element-icon, element-text {
+    vertical-align: 0.5;
+}
+
+entry {
+    font:   inherit;
+    padding: 8px;
+    placeholder         : "Search Google or type a URL";
+    placeholder-color   : @fg2;
+}
+
+message {
+    border:             2px 0 0;
+    border-color:       @bg1;
+    background-color:   @bg1;
+}
+
+textbox {
+    padding:    8px 24px;
+}
+
+listview {
+    lines:      5;
+    columns:    1;
+    fixed-height:   false;
+    border-color:   @bg1;
+    spacing:            4px;
+    padding:        0px 8px 8px 8px;
+}
+
+listview-none {
+    padding: 0px;
+}
+
+element {
+    padding:            8px 8px;
+    border-radius:      8px;
+    background-color:   transparent;
+    text-color:         @fg3;
+}
+
+element normal active {
+    text-color: @bg2;
+}
+
+element selected normal, element selected active {
+    background-color:   @bg2;
+    text-color:         @fg1;
+}
+
+element-icon {
+    size:   1.5em;
+}
+
+element-text {
+    text-color: inherit;
+}

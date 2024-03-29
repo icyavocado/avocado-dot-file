@@ -1,3 +1,5 @@
 !#/usr/bin/env bash
 
-i3lock -t -i $HOME/.config/i3-dotfile/wallpaper/two.png -p default -n
+scrot lock.png -e "mv lock.png $HOME/.config/i3-dotfile/wallpaper/lock.png" -m
+convert $HOME/.config/i3-dotfile/wallpaper/lock.png -blur 0x8 $HOME/.config/i3-dotfile/wallpaper/lock.png
+i3lock -t -i $HOME/.config/i3-dotfile/wallpaper/lock.png -p default -n

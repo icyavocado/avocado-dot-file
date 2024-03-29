@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Create extensions string to load
+CONFIG="/home/dai/.config/chromium-temporary"
+DIR="$CONFIG/extensions"
+for i in $DIR/*/; do EXTS="$EXTS,$i"; done
+
+USER_DIR=/tmp/chromium.browser.$RANDOM
+
+mkdir -p $USER_DIR/Default && cp -r $CONFIG/Default/* $USER_DIR/Default
+
+# Create chromium instance with dark mode enable and extensions pre-loaded
+nohup /snap/chromium/current/usr/lib/chromium-browser/chrome --disable-gpu --temp-profile --user-data-dir=$USER_DIR --load-extension="$EXTS" --no-first-run --disable-default-apps --disable-infobars --force-dark-mode "https://google.com" &>/dev/null &
+
+wait $!
+
+# Backup extension data between session
+cd $USER_DIR/Default
+cp -r "IndexedDB" "databases" "Local Extension Settings" "Local Storage" "Managed Extension Settings" "History" $CONFIG/Default
+
+# Remove tmp folder
+rm -r $USER_DIR

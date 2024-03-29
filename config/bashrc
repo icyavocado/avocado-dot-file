@@ -1,6 +1,5 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-
 # get current branch in git repo
 source ~/.git_prompt.sh
 
@@ -59,9 +58,8 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-  # export PS1="\[\033[38;05;32m\]\[\033[1m\]\w\[\033[38;05;226m\]\$(__git_ps1) \[\033[38;05;32m\]% \[\033[38;05;51m\]"
-  # export PS1="\[\033[38;5;70m\]\t\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput bold)\]\[$(tput sgr0)\]\[\033[38;5;6m\]\[$(tput bold)\]\u\[$(tput sgr0)\]@\[$(tput bold)\]\[\033[38;5;6m\]\W\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;15m\]\[$(tput bold)\]\[$(tput sgr0)\]\[\033[38;5;214m\]\$(__git_ps1)\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;6m\]\\$\[$(tput sgr0)\] "
-  export PS1="\[\033[38;5;70m\]\t\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput bold)\]\[$(tput sgr0)\]\[\033[38;5;6m\]\[$(tput bold)\]avocado\[$(tput sgr0)\]@\[$(tput bold)\]\[\033[38;5;6m\]\W\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;15m\]\[$(tput bold)\]\[$(tput sgr0)\]\[\033[38;5;214m\]\$(__git_ps1)\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;6m\]\\$\[$(tput sgr0)\] "
+  GIT_PS1_SHOWCOLORHINTS=1
+  export PS1="\[$(tput bold)\]\[$(tput setaf 4)\]> \[$(tput setaf 5)\]\W\[$(tput bold)\]\[$(tput setaf 3)\]\$(__git_ps1) \[$(tput sgr0)\]"
   else
   PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -76,29 +74,8 @@ xterm*|rxvt*)
     ;;
 esac
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -145,10 +122,10 @@ if type complete &>/dev/null; then
   _pm2_completion () {
     local si="$IFS"
     IFS=$'\n' COMPREPLY=($(COMP_CWORD="$COMP_CWORD" \
-                           COMP_LINE="$COMP_LINE" \
-                           COMP_POINT="$COMP_POINT" \
-                           pm2 completion -- "${COMP_WORDS[@]}" \
-                           2>/dev/null)) || return $?
+                          COMP_LINE="$COMP_LINE" \
+                          COMP_POINT="$COMP_POINT" \
+                          pm2 completion -- "${COMP_WORDS[@]}" \
+                          2>/dev/null)) || return $?
     IFS="$si"
   }
   complete -o default -F _pm2_completion pm2
@@ -162,12 +139,20 @@ elif type compctl &>/dev/null; then
     read -ln point
     si="$IFS"
     IFS=$'\n' reply=($(COMP_CWORD="$cword" \
-                       COMP_LINE="$line" \
-                       COMP_POINT="$point" \
-                       pm2 completion -- "${words[@]}" \
-                       2>/dev/null)) || return $?
+                        COMP_LINE="$line" \
+                        COMP_POINT="$point" \
+                        pm2 completion -- "${words[@]}" \
+                        2>/dev/null)) || return $?
     IFS="$si"
   }
   compctl -K _pm2_completion + -f + pm2
 fi
+
 ###-end-pm2-completion-###
+
+# Add to PATH
+PATH=$PATH:$HOME/.local/bin
+
+# Xauthority
+XAUTHORITY=$HOME/.Xauthority
+. "$HOME/.cargo/env"

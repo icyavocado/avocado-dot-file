@@ -2,12 +2,15 @@
 
 # ----------------------------------------------- PREPARE
 sudo apt update
-sudo apt install -y zip gzip tar feh blueman ubuntu-keyring software-properties-common apt-transport-https wget openssh-server python-pip curl build-essential
-sudo apt install -y mpd
-sudo apt install -y jq variety
+sudo apt install -y zip gzip tar feh blueman ubuntu-keyring \
+                    software-properties-common apt-transport-https \
+                    wget openssh-server python-pip curl build-essential
 pip install requests
 
 # ----------------------------------------------- CREATE
+
+# INSTALL policy kit
+sudo apt install -y policykit-desktop-privileges policykit-1-gnome
 
 # INSTALL git [*]
 sudo apt install -y git vim
@@ -17,6 +20,9 @@ sudo apt install -y i3 i3lock xautolock xinit
 
 # INSTALL screenshot program
 sudo apt install -y xclip scrot
+
+# INSTALL some supporting programs
+sudo apt install -y mpd variety arandr wmctrl
 
 # INSTALL xbindkeys
 sudo apt install -y xbindkeys xbindkeys-config
@@ -28,7 +34,7 @@ sudo apt install -y rofi
 sudo apt install -y terminator dbus-x11
 
 # INSTALL chromium and firefox
-sudo apt install -y firefox chromium-browser 
+sudo apt install -y firefox chromium-browser
 
 # INSTALL vagrant and virtualbox
 sudo apt install -y virtualbox vagrant
@@ -37,26 +43,6 @@ sudo apt install -y virtualbox vagrant
 wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
 export NVM_DIR="${XDG_CONFIG_HOME/:-$HOME/.}nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-# INSTALL mailspring
-sudo apt install -y snapd
-sudo snap install mailspring
-
-# INSTALL polybar
-sudo apt install -y cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev xcb libxcb-ewmh2
-git clone https://github.com/jaagr/polybar.git
-cd polybar && ./build.sh
-cd ..
-
-# INSTALL vscode
-wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-sudo apt install code
-
-# INSTALL dbeaver
-mkdir -p $HOME/Downloads
-wget -q https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb -O $HOME/Downloads/dbeaver.deb
-sudo apt install -y $HOME/Downloads/dbeaver.deb
 
 # ----------------------------------------------- Symlinks
 
@@ -79,9 +65,6 @@ mkdir -p $HOME/.config/i3-dotfile
 ln -s $(pwd)/wallpaper $HOME/.config/i3-dotfile/
 ln -s $(pwd)/scripts $HOME/.config/i3-dotfile/
 
-# Symlink vimrc
-ln -s $(pwd)/config/vim/vimrc $HOME/.vimrc
-
 # Symlink xbindkeys
 ln -s $(pwd)/config/xbindkeys/xbindkeysrc $HOME/.xbindkeysrc
 xbindkeys --poll-rc
@@ -99,8 +82,11 @@ ln -s $(pwd)/config/rofi $HOME/.config/rofi
 
 # Start up window manager / set background
 # startx
-feh --bg-scale $HOME/.config/i3-dotfile/wallpaper/one.png
+feh --bg-scale $HOME/.config/i3-dotfile/wallpaper/vim.png
 
 # ----------------------------------------------- CLEAN UP
 rm -r $HOME/Downloads
 fc-cache -f -v
+
+# Alias
+echo "alias pulseaudio-control='~/avocado-dot-file/config/polybar/scripts/pulseaudio-control/pulseaudio-control.bash'" >> ~/.bashrc

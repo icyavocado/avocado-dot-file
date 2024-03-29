@@ -11,17 +11,37 @@
 
 set $mod Mod4
 
-# Set wallpaper
+# Disable titlebars for all windows
+for_window [class=".*"] border pixel 0
 
-exec --no-startup-id feh --bg-fill ~/.config/i3-dotfile/wallpaper/one.png
+# Open Chromium using random temp profile
+bindsym $mod+shift+n exec "~/avocado-dot-file/scripts/temp-profile"
+
+# Open Typora or focus
+bindsym $mod+t exec "~/notes/update-symlink && ~/avocado-dot-file/scripts/focus typora ~/notes/TicketTracker.md"
+
+# Set wallpaper
+exec --no-startup-id "~/.config/i3-dotfile/scripts/work-layout-screen.sh"
+exec --no-startup-id "feh --bg-max ~/.config/i3-dotfile/wallpaper/vim.png"
+exec --no-startup-id "ibus-daemon"
+
+# Set polkit
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+
+exec --no-startup-id "picom -b"
+
+# Notification
+exec --no-startup-id "~/.config/i3-dotfile/scripts/notification-dunst.sh"
 
 # Windows
-for_window [class="^.*"] border pixel 0
-for_window [class=".*"] title_format "%title"
+# for_window [class=".*"] border pixel 1
+# for_window [class=".*"] title_format "%title"
+# for_window [class=".*"] border none
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:'Fira Code' 8
+#font pango:'Fira Code' 8
+font pango:'Operator Mono Lig Medium' 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -36,9 +56,10 @@ font pango:'Fira Code' 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+bindsym $mod+Shift+y fullscreen disable, floating enable
 
 # Lock
-bindsym $mod+grave exec "xautolock -locknow"
+bindsym $mod+f9 exec xautolock -locknow
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
@@ -49,7 +70,8 @@ bindsym $mod+Shift+q kill
 # start rofi (a program launcher)
 bindsym $mod+d exec "~/.config/rofi/rofi.sh"
 bindsym $mod+Shift+d exec "~/.config/rofi/launch/rofi_todo.sh"
-bindsym $mod+Shift+f exec "~/.config/rofi/launch/rofi_find.sh"
+# Start bitwarden
+bindsym $mod+b exec "rofi-rbw"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -79,6 +101,17 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
+
+bindsym $mod+minus [floating] move scratchpad
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+Shift+Tab floating toggle
+
+# Show the first scratchpad window
+bindsym $mod+Tab scratchpad show
+
+# Show the sup-mail scratchpad window, if any.
+bindsym $mod+Shift+s [title="^Sup ::"] scratchpad show
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -166,21 +199,36 @@ bindsym $mod+r mode "resize"
 # Startup
 exec --no-startup-id ~/.config/i3-dotfile/scripts/startup &
 
-
 # Guake
 exec --no-startup-id ~/.config/i3-dotfile/scritps/guake &
 
 # Start xbindkeys
-exec --no-startup-id xbindkeys &
+# exec --no-startup-id xbindkeys &
 
 # Polybar
-exec_always --no-startup-id ~/.config/i3-dotfile/scripts/polybar &
+# exec_always --no-startup-id ~/.config/i3-dotfile/scripts/polybar &
+# panel
+bar {
+  font pango:'Operator Mono Lig Medium' 7
+  colors {
+    background #181A1F
+    statusline #2f343f
+    separator #2f343f
+
+    # colour of border, background, and text
+    focused_workspace       #2f343f #075861 #d8dee8
+    active_workspace        #2f343f #2f343f #d8dee8
+    inactive_workspace      #2f343f #2f343f #d8dee8
+    urgent_workspacei       #2f343f #ebcb8b #2f343f
+  }
+  status_command i3status
+}
 
 # i3autolock
 exec --no-startup-id ~/.config/i3-dotfile/scripts/autolock &
 
 # Scrot - ScreenShot
-bindsym Ctrl+Shift+4 --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+bindsym Ctrl+Shift+4 --release exec "scrot -fs /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 bindsym Ctrl+Shift+3 exec "scrot /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 
 # Gnome Settings
@@ -190,6 +238,8 @@ exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 bindsym XF86AudioRaiseVolume exec --no-starup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+bindsym $mod+Ctrl+Shift+I exec --no-startup-id xdotool click --repeat 5000000 --delay 20 2
 
 # # Media player controls
 # bindsym XF86AudioPlay exec playerctl play

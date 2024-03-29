@@ -1,4 +1,4 @@
-;==========================================================
+ ;==========================================================
 ;
 ;
 ;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
@@ -18,8 +18,9 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #222
-background-alt = #444
+; background = #000
+background = #181A1F
+background-alt = #222
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
 foreground-alt = #555
@@ -31,23 +32,29 @@ alert = #bd2c40
 monitor = ${env:MONITOR:}
 #monitor = eDP-1-1
 width = 100%
-height = 17
+height = 16
+padding-top = 0
+bottom = true
+border = 0
 
-background = #00000000
-foreground = #ccffffff
+; background = #FF000000
+background = ${colors.background}
+foreground = ${colors.foreground}
 
 line-color = #00000000
 line-size = 3
 
-padding-right = 5
-module-margin = 2
+padding-right = 1.25
+module-margin = 1.25
+
 border-color = #00000000
-font-0 = Ubuntu:size=8;2
-font-1 = Material Design Icons:size=12;1
-font-2 = Weather Icons:size=10;1
-modules-left = i3 rocket-chat guake workscreen homescreen title
-modules-center = player-mpris-tail openweathermap-fullfeatured
-modules-right = pulseaudio wireless-network wired-network battery date powermenu
+font-0 = Fira Code:size=7;2
+font-1 = Material Design Icons:size=7;1
+; font-2 = Weather Icons:size=8;1
+; modules-left = i3
+; modules-center = title
+;modules-right = light-available pulseaudio player-mpris-tail date powermenu
+modules-right = i3 wired-network date battery powerdraw powermenu
 
 tray-position = right
 tray-padding = 5
@@ -56,37 +63,37 @@ tray-background = ${colors.background}
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
 
-[module/player-mpris-tail]
-type = custom/script
-exec = ~/avocado-dot-file/scripts/player-mpris-tail.py --icon-playing  --icon-paused  --icon-stopped  --icon-none 'Nothing to see here' -f '%{A1:~/avocado-dot-file/scripts/player-mpris-tail.py previous:}%{A} %{A1:~/avocado-dot-file/scripts/player-mpris-tail.py play-pause:}%{T2}{icon-reversed}%{T-}%{A} %{A1:~/avocado-dot-file/scripts/player-mpris-tail.py pause:}%{A}%{A1:~/avocado-dot-file/scripts/player-mpris-tail.py next:}   %{A}{:t30:{title}:} - {:artist:t30:{artist}:} '
-tail = true
-label = %output%
+; [module/player-mpris-tail]
+; type = custom/script
+; exec = ~/avocado-dot-file/scripts/player-mpris-tail.py --icon-playing  --icon-paused  --icon-stopped  --icon-none '' -f '%{A1:~/avocado-dot-file/scripts/player-mpris-tail.py previous:}%{A} %{A1:~/avocado-dot-file/scripts/player-mpris-tail.py play-pause:}%{T2}{icon-reversed}%{T-}%{A} %{A1:~/avocado-dot-file/scripts/player-mpris-tail.py pause:}%{A}%{A1:~/avocado-dot-file/scripts/player-mpris-tail.py next:} %{A}'
+; tail = true
+; label = %output%
 
-[module/openweathermap-fullfeatured]
-type = custom/script
-exec = ~/avocado-dot-file/scripts/openweathermap-fullfeatured.sh
-interval = 600
-format = <label>
+; [module/openweathermap-fullfeatured]
+; type = custom/script
+; exec = ~/avocado-dot-file/scripts/openweathermap-fullfeatured.sh
+; interval = 600
+; format = <label>
 
-[module/workscreen]
-type = custom/text
-content = 
-click-left = "~/avocado-dot-file/scripts/work-layout-screen.sh &"
+; [module/workscreen]
+; type = custom/text
+; content = 
+; click-left = "~/avocado-dot-file/scripts/work-layout-screen.sh &"
 
-[module/homescreen]
-type = custom/text
-content = 
-click-left = "~/avocado-dot-file/scripts/home-layout-screen.sh &"
+; [module/homescreen]
+; type = custom/text
+; content = 
+; click-left = "~/avocado-dot-file/scripts/home-layout-screen.sh &"
 
-[module/guake]
-type = custom/text
-content = 
-click-left = "guake & ~/avocado-dot-file/scripts/guake &"
+; [module/guake]
+; type = custom/text
+; content = 
+; click-left = "guake & ~/avocado-dot-file/scripts/guake &"
 
-[module/rocket-chat]
-type = custom/text
-content = 
-click-left = "rocketchat-desktop &"
+; [module/rocket-chat]
+; type = custom/text
+; content = 
+; click-left = "rocketchat-desktop &"
 
 [module/battery]
 type = internal/battery
@@ -134,8 +141,9 @@ animation-charging-framerate = 200
 
 [module/date]
 type = internal/date
-date =  %%{F#99}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
-date-alt =  %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
+; date = %%{F#fff}%H:%M%%{F-}
+date =  %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
+; date-alt =  %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
 
 [module/title]
 type = internal/xwindow
@@ -170,24 +178,24 @@ label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
-label-focused = %icon% - %index%
+label-focused = %index%
 label-focused-background = ${colors.background-alt}
 label-focused-underline = ${colors.primary}
-label-focused-padding = 2
+label-focused-padding = 1
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %icon% - %index%
-label-unfocused-padding = 2
+label-unfocused = %index%
+label-unfocused-padding = 1
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %icon% - %index%
+label-visible = %index%
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %icon% - %index%
-label-urgent-background = 2
+label-urgent = %index%
+label-urgent-background = 1
 label-urgent-padding = ${colors.alert}
 
 [module/wireless-network]
@@ -222,12 +230,58 @@ interval = 3.0
 label-connected =  %local_ip%
 label-disconnected-foreground = #66
 
+; [module/light-available]
+; type = custom/script
+
+; ; Available tokens:
+; ;   %counter%
+; ; Command to be executed (using "/bin/sh -c [command]")
+; exec = ~/.nvm/versions/node/v10.18.0/bin/node ./avocado-dot-file/scripts/light.js ignore
+
+; click-left = "~/.nvm/versions/node/v10.18.0/bin/node ./avocado-dot-file/scripts/light.js"
+
+; ; Conditional command that, if defined, needs to exit successfully
+; ; before the main exec command is invoked.
+; ; Default: ""
+; ;exec-if = pgrep -x myservice
+
+; ; Will the script output continous content?
+; ; Default: false
+; tail = true
+; label = %output:1:8...%
+
+; ; Seconds to sleep between updates
+; ; Default: 5 (0 if `tail = true`)
+; interval = 1
+
+[module/pulseaudio-control]
+type = custom/script
+tail = true
+format-underline = ${colors.cyan}
+label-padding = 2
+label-foreground = ${colors.foreground}
+
+# Icons mixed from Font Awesome 5 and Material Icons
+# You can copy-paste your options for each possible action, which is more
+# trouble-free but repetitive, or apply only the relevant ones (for example
+# --sink-blacklist is only needed for next-sink).
+exec = pulseaudio-control --icons-volume " , " --icon-muted " " --sink-nicknames-from "device.description" --sink-nickname "alsa_output.pci-0000_00_1b.0.analog-stereo:  Speakers" --sink-nickname "alsa_output.usb-Kingston_HyperX_Virtual_Surround_Sound_00000000-00.analog-stereo:  Headphones" listen
+click-right = exec pavucontrol &
+click-left = pulseaudio-control togmute
+click-middle = pulseaudio-control --sink-blacklist "alsa_output.pci-0000_01_00.1.hdmi-stereo-extra2" next-sink
+scroll-up = pulseaudio-control --volume-max 130 up
+scroll-down = pulseaudio-control --volume-max 130 down
+
 [module/pulseaudio]
 type = internal/pulseaudio
 
 format-volume = <label-volume> <bar-volume>
-label-volume = 䀘 %percentage%%
+label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
+
+sink = bluez_sink.4C_87_5D_10_9B_60.a2dp_sink.monitor
+
+click-right = pavucontrol &
 
 label-muted =  muted
 label-muted-foreground = #666
@@ -249,20 +303,88 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
+[module/powerdraw]
+type = custom/script
+exec = awk '{printf "%.3f W", $1*10^-6}' /sys/class/power_supply/BAT0/power_now
+interval = 2
+
 [module/powermenu]
 type = custom/menu
 expand-right = false
 label-separator = " "
+padding = 1
 
-menu-0-0 = Exit i3
+### POWER MENU
+menu-0-0 = Power
 menu-0-0-foreground = #fba922
-menu-0-0-exec = i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'
-menu-0-1 = Reboot
-menu-0-1-foreground = #fba922
-menu-0-1-exec = i3-nagbar -t warning -m 'You pressed the reboot shortcut. Do you really want to reboot? This will end your session.' -b 'Yes, reboot' 'reboot'
-menu-0-2 = Power off
-menu-0-2-foreground = #fba922
-menu-0-2-exec = i3-nagbar -t warning -m 'You pressed the shutdown shortcut. Do you really want to turn the computer off? This will shut the computer down.' -b 'Yes, power down' 'shutdown -r now'
+menu-0-0-exec = menu-open-1
+
+menu-1-0 = Reload i3
+menu-1-0-foreground = #fba922
+menu-1-0-exec = i3-nagbar 'i3-msg reload && i3-msg restart'
+
+menu-1-1 = Exit i3
+menu-1-1-foreground = #fba922
+menu-1-1-exec = i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'
+
+menu-1-2 = Reboot
+menu-1-2-foreground = #fba922
+menu-1-2-exec = i3-nagbar -t warning -m 'You pressed the reboot shortcut. Do you really want to reboot? This will end your session.' -b 'Yes, reboot' 'reboot'
+
+menu-1-3 = Power off
+menu-1-3-foreground = #fba922
+menu-1-3-exec = i3-nagbar -t warning -m 'You pressed the shutdown shortcut. Do you really want to turn the computer off? This will shut the computer down.' -b 'Yes, power down' 'shutdown -r now'
+
+### YOURSOLE
+
+menu-0-1 = YourSole
+menu-0-1-foreground = #50a2a7
+menu-0-1-exec = menu-open-2
+
+menu-2-0 = restart-ys
+menu-2-0-background = #50a2a7
+menu-2-0-exec = ~/avocado-dot-file/scripts/YourSole/restart-yoursole.sh
+menu-2-0-padding = 1
+
+menu-2-1 = restart-interchange
+menu-2-1-background = #9b2915
+menu-2-1-exec = ~/avocado-dot-file/scripts/YourSole/restart-interchange.sh
+menu-2-1-padding = 1
+
+menu-2-2 = restart-recork
+menu-2-2-background = #e9b44c
+menu-2-2-exec = ~/avocado-dot-file/scripts/YourSole/restart-recork.sh
+menu-2-2-padding = 1
+
+menu-2-3 = restart-all
+menu-2-3-background = #1c110a
+menu-2-3-exec = ~/avocado-dot-file/scripts/YourSole/restart.sh
+menu-2-3-padding = 1
+
+### YOURSOLE LOG
+menu-2-4 = logs
+menu-2-4-foreground = #50a2a7
+menu-2-4-exec = menu-open-3
+
+menu-3-0 = ys
+menu-3-0-background = #50a2a7
+menu-3-0-exec = terminator -e "tail -f ~/avocado-dot-file/scripts/YourSole/ys.log"
+menu-3-0-padding = 1
+
+menu-3-1 = interchange
+menu-3-1-background = #9b2915
+menu-3-1-exec = terminator -e "tail -f ~/avocado-dot-file/scripts/YourSole/interchange.log"
+menu-3-1-padding = 1
+
+menu-3-2 = recork
+menu-3-2-background = #e9b44c
+menu-3-2-exec = terminator -e "tail -f ~/avocado-dot-file/scripts/YourSole/recork.log"
+menu-3-2-padding = 1
+
+menu-3-3 = all
+menu-3-3-background = #1c110a
+menu-3-3-exec = terminator -e "tail -f ~/avocado-dot-file/scripts/YourSole/all.log"
+menu-3-3-padding = 1
 
 label-open = %{T2}%{T-}
 label-close = 
